@@ -1,232 +1,427 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>胎児の子 Official Site</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: "Helvetica", "YuGothic", sans-serif;
-      margin: 0;
-      background: #f5f5f5;
-      color: #222;
-      line-height: 1.9;
-    }
-    header {
-      background: #111;
-      color: #f5f5f5;
-      text-align: center;
-      padding: 80px 20px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 3rem;
-      letter-spacing: 0.12em;
-    }
-    header p {
-      margin-top: 18px;
-      font-size: 1.1rem;
-    }
-    nav {
-      background: #1c1c1c;
-      color: #ddd;
-      text-align: center;
-      padding: 12px 0;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    nav a {
-      color: #ddd;
-      text-decoration: none;
-      margin: 0 16px;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 20px 60px;
-    }
-    section {
-      margin-bottom: 80px;
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 40px 40px 45px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    }
-    section h2 {
-      margin-top: 0;
-      font-size: 1.8rem;
-      border-left: 8px solid #333;
-      padding-left: 14px;
-      letter-spacing: 0.08em;
-    }
-    .hero {
-      text-align: center;
-    }
-    .hero img {
-      width: 320px;
-      border-radius: 12px;
-      background: #ddd;
-      margin-bottom: 18px;
-    }
-    .subtext {
-      font-size: 0.95rem;
-      color: #666;
-    }
-    .big-text {
-      font-size: 1.1rem;
-      margin-top: 22px;
-    }
-  </style>
+ <meta charset="UTF-8">
+ <title>胎児の子 Official Site</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <style>
+  /* --- 胎内をイメージしたカラーパレットとアニメーション --- */
+  body {
+   font-family: "Helvetica", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+   margin: 0;
+   /* 胎内の中心の温かみと、外側の漆黒を表現するラジアルグラデーション */
+   background: radial-gradient(circle, #1a0808 0%, #080202 100%);
+   color: #e5dcdb;
+   line-height: 1.9;
+   overflow-x: hidden;
+  }
+  
+  header {
+   background: #0f0404;
+   color: #f2e1e1;
+   text-align: center;
+   padding: 100px 20px;
+   border-bottom: 1px solid #301010;
+  }
+  header h1 {
+   margin: 0;
+   font-size: 3.2rem;
+   letter-spacing: 0.2em;
+   text-shadow: 0 0 15px rgba(153, 0, 0, 0.6);
+  }
+  header p {
+   margin-top: 20px;
+   font-size: 1.1rem;
+   color: #b09e9d;
+   letter-spacing: 0.05em;
+  }
+
+  nav {
+   background: #120505;
+   border-bottom: 1px solid #2a0b0b;
+   text-align: center;
+   padding: 14px 0;
+   position: sticky;
+   top: 0;
+   z-index: 10;
+  }
+  nav a {
+   color: #b3a2a2;
+   text-decoration: none;
+   margin: 0 14px;
+   font-size: 0.85rem;
+   letter-spacing: 0.1em;
+   transition: color 0.3s, text-shadow 0.3s;
+  }
+  nav a:hover {
+   color: #ff3333;
+   text-shadow: 0 0 8px #ff3333;
+  }
+
+  /* 羊水のようなゆったりとした揺らぎのエフェクト */
+  @keyframes floatYousui {
+   0% { transform: translateY(0px) rotate(0deg); }
+   50% { transform: translateY(6px) rotate(0.2deg); }
+   100% { transform: translateY(0px) rotate(0deg); }
+  }
+
+  .container {
+   max-width: 900px;
+   margin: 0 auto;
+   padding: 40px 20px 80px;
+   animation: floatYousui 8s ease-in-out infinite; /* 羊水効果の適用 */
+  }
+
+  section {
+   margin-bottom: 80px;
+   background: #110505; /* より暗いセクション背景 */
+   border-radius: 18px;
+   padding: 45px;
+   border: 1px solid #2c0e0e;
+   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  }
+  section h2 {
+   margin-top: 0;
+   font-size: 1.6rem;
+   border-left: 6px solid #990000; /* 鈍い血の赤 */
+   padding-left: 16px;
+   letter-spacing: 0.12em;
+   color: #f2e1e1;
+  }
+
+  .hero {
+   text-align: center;
+  }
+  .hero img, .gallery-img {
+   width: 300px;
+   border-radius: 12px;
+   background: #200d0d;
+   margin-bottom: 24px;
+   border: 1px solid #4a1515;
+   box-shadow: 0 0 20px rgba(153, 0, 0, 0.3);
+  }
+  .subtext {
+   font-size: 0.9rem;
+   color: #8a7877;
+  }
+  .big-text {
+   font-size: 1.05rem;
+   margin-top: 22px;
+   color: #d1bfbe;
+  }
+
+  /* 心音生成コントロールのスタイル */
+  .audio-controller {
+   text-align: center;
+   margin: 30px 0;
+   padding: 20px;
+   background: #1a0808;
+   border-radius: 12px;
+   border: 1px dashed #5e1c1c;
+  }
+  .audio-btn {
+   background: #401010;
+   color: #f2e1e1;
+   border: 1px solid #802020;
+   padding: 12px 28px;
+   font-size: 1rem;
+   border-radius: 30px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   box-shadow: 0 4px 15px rgba(128, 32, 32, 0.4);
+   letter-spacing: 0.05em;
+  }
+  .audio-btn:hover {
+   background: #601515;
+   box-shadow: 0 0 20px rgba(255, 51, 51, 0.6);
+  }
+
+  /* テーブル風に整形したプロフィール */
+  .profile-table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
+  }
+  .profile-table td {
+   padding: 12px 15px;
+   border-bottom: 1px solid #240b0b;
+  }
+  .profile-table td:first-child {
+   font-weight: bold;
+   color: #ff4d4d;
+   width: 30%;
+  }
+
+  footer {
+   background: #080202;
+   text-align: center;
+   padding: 40px 20px;
+   font-size: 0.85rem;
+   color: #615352;
+   border-top: 1px solid #1a0808;
+  }
+ </style>
 </head>
 <body>
 
 <header>
-  <h1>胎児の子</h1>
-  <p>胎内から始まる物語。その視点で世界を見るアイドルプロジェクト。</p>
+ <h1>胎児の子</h1>
+ <p>胎内から始まる物語。その視点で世界を見るアイドルプロジェクト。</p>
 </header>
 
 <nav>
-  <a href="#profile">PROFILE</a>
-  <a href="#concept">CONCEPT</a>
-  <a href="#story">STORY</a>
-  <a href="#debut">DEBUT</a>
-  <a href="#activity">ACTIVITY</a>
-  <a href="#gallery">GALLERY</a>
-  <a href="#message">MESSAGE</a>
-  <a href="#info">INFO</a>
+ <a href="#profile">PROFILE</a>
+ <a href="#concept">CONCEPT</a>
+ <a href="#story">STORY</a>
+ <a href="#debut">DEBUT</a>
+ <a href="#activity">ACTIVITY</a>
+ <a href="#gallery">GALLERY</a>
+ <a href="#message">MESSAGE</a>
+ <a href="#info">INFO</a>
 </nav>
 
 <div class="container">
 
-  <section class="hero">
-    <h2>INTRODUCTION</h2>
+ <!-- 心音コントロールセクション（Web Audio API搭載） -->
+ <div class="audio-controller">
+  <p class="subtext" style="margin-bottom: 15px;">※ 胎内の没入感を高めるため、音量を控えめにしてご試聴ください。</p>
+  <button id="heartbeat-btn" class="audio-btn">🔊 胎内の音（心音）を聴く</button>
+ </div>
 
-    <!-- ⭐ ここに画像が表示される（idol.jpg をアップロードすればOK） -->
-    <img src="idol.jpg" alt="胎児の子">
+ <section class="hero">
+  <h2>INTRODUCTION</h2>
+  <!-- 仮画像（idol.jpg） -->
+  <img src="idol.jpg" alt="胎児の子">
+  <p class="subtext">※画像は後日差し替え予定。現在は仮ビジュアルです。</p>
+  <p class="big-text">
+   胎児の子は、「生まれる前の視点」から世界を見つめるアイドルプロジェクト。<br>
+   まだ何も知らない存在が、外の世界に興味を持ち、少しずつ歩み始める。<br>
+   その過程を、音楽と物語で記録していく試みです。
+  </p>
+ </section>
 
-    <p class="subtext">※画像は後日差し替え予定。現在は仮ビジュアルです。</p>
-    <p class="big-text">
-      胎児の子は、「生まれる前の視点」から世界を見つめるアイドルプロジェクト。  
-      まだ何も知らない存在が、外の世界に興味を持ち、少しずつ歩み始める。  
-      その過程を、音楽と物語で記録していく試みです。
-    </p>
-  </section>
+ <section id="profile">
+  <h2>PROFILE</h2>
+  <table class="profile-table">
+   <tr>
+    <td>名前</td>
+    <td>胎児の子（たいじのこ）</td>
+   </tr>
+   <tr>
+    <td>誕生日</td>
+    <td>1月31日（予定日ではありません）</td>
+   </tr>
+   <tr>
+    <td>趣味</td>
+    <td>ゲーム（外の世界から漏れ聞こえる電子音を聴くこと）</td>
+   </tr>
+   <tr>
+    <td>特技</td>
+    <td>羊水で水泳</td>
+   </tr>
+   <tr>
+    <td>好きなもの</td>
+    <td>マトリョーシカ（何層にも包まれている安心感）</td>
+   </tr>
+   <tr>
+    <td>苦手なもの</td>
+    <td>浅野（冷たい気配、鋭い金属の擦れる音）</td>
+   </tr>
+  </table>
+ </section>
 
-  <section id="profile">
-    <h2>PROFILE</h2>
-    <p class="big-text">
-      名前：胎児の子  
-      誕生日：1月31日  
-      趣味：ゲーム  
-      特技：羊水で水泳  
-      好きなもの：マトリョーシカ  
-      苦手なもの：浅野  
-    </p>
-  </section>
+ <section id="concept">
+  <h2>CONCEPT</h2>
+  <p class="big-text">
+   胎児の子のコンセプトは、「胎内の静けさ」と「外の世界への憧れ」の両立。<br><br>
+   生まれる前の存在は、世界を直接見ることはできない。<br>
+   しかし、母親の鼓動、羊水を伝うくぐもった音、断片的な情報だけで、外側を果てしなく想像し続けている。
+  </p>
+ </section>
 
-  <section id="concept">
-    <h2>CONCEPT</h2>
-    <p class="big-text">
-      胎児の子のコンセプトは、「胎内の静けさ」と「外の世界への憧れ」の両立。  
-      生まれる前の存在は、世界を直接見ることはできない。  
-      しかし、音や気配、断片的な情報だけで、外側を想像し続けている。
-    </p>
-  </section>
+ <section id="story">
+  <h2>STORY</h2>
+  <p class="big-text">
+   ある冬の日、胎児の子は「外の世界の音」をはっきりと意識した。<br><br>
+   遠くで誰かが笑っているような声、規則正しく鳴り響く雑音、何か温かいものが動く気配。<br>
+   その瞬間、暗闇の中で「この世界、もしかしたら楽しそうだな」と、初めて思った。
+  </p>
+ </section>
 
-  <section id="story">
-    <h2>STORY</h2>
-    <p class="big-text">
-      ある冬の日、胎児の子は「外の世界の音」をはっきりと意識した。  
-      遠くで誰かが笑っているような声、何かが動く気配。  
-      その瞬間、「この世界、楽しそうだな」と思った。
-    </p>
-  </section>
+ <section id="debut">
+  <h2>DEBUT WORKS</h2>
+  <p class="big-text" style="border-bottom: 1px solid #3a1313; padding-bottom: 15px;">
+   <strong>1st Single「アイドル」</strong><br>
+   リリース日（設定）：11月21日<br>
+   価格：￥1,310（税抜） / ￥1,441（税込・羊水税込）<br>
+   規格品番：TJNO-0001 / Amniotic Fluid Records（胎内レコーズ）<br>
+   <span class="subtext">【初回限定母体仕様】エコー写真風ピクチャーレーベル / 「浅野」立ち入り禁止ステッカー封入</span>
+  </p>
 
-  <section id="debut">
-    <h2>DEBUT WORKS</h2>
-    <p class="big-text">
-      1st Single「アイドル」  
-      収録曲：アイドル / GEMN / ファタール / TEST ME
-    </p>
-  </section>
+  <p class="big-text">
+   <strong>M1. アイドル</strong><br>
+   自分自身が「アイドル」と呼ばれる存在になることへの違和感と、それでも誰かに見つけてほしいという矛盾した願いを抱えた楽曲。<br>
+   「まだ生まれていない私は、嘘すらついていない。だからこそ、完璧で究極のアイドルなのだと思う。」
+  </p>
 
-  <section id="activity">
-    <h2>ACTIVITY LOG</h2>
-    <p class="big-text">
-      2026.01：胎児の子、外の世界の音を意識し始める。  
-      2026.02：マトリョーシカと出会う。  
-      2026.03：ファンの呼称「迷える子羊」が決定。
-    </p>
-  </section>
+  <p class="big-text">
+   <strong>M2. GEMN</strong><br>
+   未完成なまま暗闇で輝こうとする存在を描いた楽曲。<br>
+   「二重螺旋の暗闇。同じ場所で、分かたれたもう一つの光を夢見ている。」
+  </p>
 
-  <section id="gallery">
-    <h2>TEXT GALLERY</h2>
-    <p class="big-text">
-      ・薄暗い部屋の中、モニターの光だけが胎児の子の横顔を照らしている。  
-      ・マトリョーシカを抱えてじっと見つめている姿。
-    </p>
-  </section>
+  <p class="big-text">
+   <strong>M3. ファタール</strong><br>
+   避けられない変化と、抗えない宿命をテーマにした楽曲。<br>
+   「狭い羊水の中で、私たちは最初から一つの席を奪い合う運命（ファタール）だった。」
+  </p>
 
-  <section id="message">
-    <h2>MESSAGE</h2>
-    <p class="big-text">
-      「迷える子羊のみんなへ。ここまで読んでくれてありがとう。」
-    </p>
-  </section>
+  <p class="big-text">
+   <strong>M4. TEST ME</strong><br>
+   試されることへの戸惑いと、それでも前に進もうとする抵抗を描いた曲。<br>
+   「外側の大人が、私を『検査（テスト）』しようとする。私を試すな、まだそこには行かない。」
+  </p>
+ </section>
 
-  <section id="info">
-    <h2>INFO / Q&A</h2>
-    <p class="big-text">
-      Q：このサイトは本物の公式サイトですか？  
-      A：設定上の公式サイトです。
-    </p>
-  </section>
+ <section id="activity">
+  <h2>ACTIVITY LOG</h2>
+  <p class="big-text">
+   <strong>2026.01</strong>：胎児の子、外の世界のノイズを意識し始める。<br>
+   <strong>2026.02</strong>：マトリョーシカと出会う。入れ子構造の中に閉じ込められた自分自身を重ね合わせる。<br>
+   <strong>2026.03</strong>：ファンの呼称が「迷える子羊」に決定。<br>
+   <strong>2026.04</strong>：羊水の外で、誰かが「浅野」と呼ぶ冷たい声を検知。心拍が一時的に上昇。
+  </p>
+ </section>
+
+ <section id="gallery">
+  <h2>TEXT GALLERY</h2>
+  <!-- 仮画像（matro.jpg） -->
+  <img src="matro.jpg" alt="マトリョーシカを持つ胎児の子" class="gallery-img">
+  <p class="big-text">
+   ・薄暗い部屋の中、モニターの淡い光だけが胎児の子の横顔を照らしている。<br>
+   ・マトリョーシカを両手でしっかりと抱え、何かを待つようにじっと見つめている姿。
+  </p>
+ </section>
+
+ <section id="message">
+  <h2>MESSAGE</h2>
+  <p class="big-text" style="font-style: italic; text-align: center; color: #ff9999; text-shadow: 0 0 10px rgba(255,153,153,0.4);">
+   「迷える子羊のみんなへ。暗い暗いこの場所から、みんなの声を聴いています。いつか生まれるその日まで、どうか私を見失わないで。」
+  </p>
+ </section>
+
+ <section id="info">
+  <h2>INFO / Q&A</h2>
+  <p class="big-text">
+   <strong>Q：このサイトは本物の公式サイトですか？</strong><br>
+   A：設定上の公式サイトです。
+  </p>
+  <p class="big-text" style="border-top: 1px dashed #3a1313; padding-top: 15px;">
+   <strong>Q：苦手なものに書かれている「浅野」とは誰ですか？</strong><br>
+   A：羊水の外側から、冷たく鋭い金属の道具を持って私に近づいてくる影です。その気配がすると、お腹の奥が痛くなり、私の心音がとても速くなります。近づけないでください。
+  </p>
+ </section>
 
 </div>
 
 <footer>
-  <p>© 2026 胎児の子 Project</p>
+ <p>© 2026 胎児の子 Project / Amniotic Fluid Records</p>
 </footer>
+
+<script>
+  /* 
+    --- 胎児の心拍音（心音） Web Audio APIシンセサイザー ---
+    胎児の心拍数（約130 BPM：成人の約2倍の速さ）をリアルに合成。
+    低く重い「トックン、トックン」という音をブラウザ内でリアルタイム生成します。
+  */
+  let audioCtx = null;
+  let heartbeatInterval = null;
+  let isPlaying = false;
+
+  const btn = document.getElementById('heartbeat-btn');
+
+  btn.addEventListener('click', () => {
+    // ユーザーアクションによりオーディオコンテキストを初期化
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+
+    if (!isPlaying) {
+      isPlaying = true;
+      btn.innerText = "🔇 胎内の音（心音）を止める";
+      btn.style.background = "#801a1a";
+      btn.style.borderColor = "#ff3333";
+      
+      // 胎児の心拍数：約130 BPM（約460ミリ秒に1回拍動）
+      const beatIntervalMs = 460; 
+
+      const triggerBeat = () => {
+        const now = audioCtx.currentTime;
+
+        // 1拍目 (Lub - 収縮期：低く太い音)
+        const osc1 = audioCtx.createOscillator();
+        const gain1 = audioCtx.createGain();
+        const filter1 = audioCtx.createBiquadFilter();
+        
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(55, now); // 55Hzの重低音
+        
+        // フィルターで角を丸めてお腹の中のくぐもった音にする
+        filter1.type = 'lowpass';
+        filter1.frequency.setValueAtTime(120, now);
+
+        gain1.gain.setValueAtTime(0.001, now);
+        gain1.gain.exponentialRampToValueAtTime(0.8, now + 0.03); // すばやい立ち上がり
+        gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.15); // すばやい減衰
+        
+        osc1.connect(filter1);
+        filter1.connect(gain1);
+        gain1.connect(audioCtx.destination);
+        
+        osc1.start(now);
+        osc1.stop(now + 0.2);
+
+        // 2拍目 (Dub - 拡張期：わずかに高い音、1拍目の直後)
+        const osc2 = audioCtx.createOscillator();
+        const gain2 = audioCtx.createGain();
+        const filter2 = audioCtx.createBiquadFilter();
+        
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(65, now + 0.12); // 120ms後に少しだけ高い音
+        
+        filter2.type = 'lowpass';
+        filter2.frequency.setValueAtTime(120, now + 0.12);
+
+        gain2.gain.setValueAtTime(0.001, now + 0.12);
+        gain2.gain.exponentialRampToValueAtTime(0.5, now + 0.15);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.27);
+        
+        osc2.connect(filter2);
+        filter2.connect(gain2);
+        gain2.connect(audioCtx.destination);
+        
+        osc2.start(now + 0.12);
+        osc2.stop(now + 0.32);
+      };
+
+      // 初回再生
+      triggerBeat();
+      // ループ処理
+      heartbeatInterval = setInterval(triggerBeat, beatIntervalMs);
+    } else {
+      // 停止処理
+      isPlaying = false;
+      btn.innerText = "🔊 胎内の音（心音）を聴く";
+      btn.style.background = "#401010";
+      btn.style.borderColor = "#802020";
+      clearInterval(heartbeatInterval);
+    }
+  });
+</script>
 
 </body>
 </html>
-
-<section id="gallery">
-  <h2>TEXT GALLERY</h2>
-
-  <img src="matro.jpg" alt="マトリョーシカを持つ胎児の子" style="width:300px; border-radius:12px; margin-bottom:20px;">
-
-  <p class="big-text">
-    ・薄暗い部屋の中、モニターの光だけが胎児の子の横顔を照らしている。  
-    ・マトリョーシカを抱えてじっと見つめている姿。
-  </p>
-</section>
-
-<section id="debut">
-  <h2>DEBUT WORKS</h2>
-  <p class="big-text">
-    1st Single「アイドル」<br>
-    収録曲：アイドル / GEMN / ファタール / TEST ME<br>
-    リリース日（設定）：11月21日
-  </p>
-
-  <p class="big-text">
-    タイトル曲「アイドル」は、  
-    自分自身が「アイドル」と呼ばれる存在になることへの違和感と、  
-    それでも誰かに見ていてほしいという願いを同時に抱えた楽曲。  
-    外側から与えられるイメージと、内側にある本音のズレをテーマにしている。
-  </p>
-
-  <p class="big-text">
-    「GEMN」：未完成なまま輝こうとする存在を描いた楽曲。  
-    「ファタール」：避けられない変化をテーマにした曲。  
-    「TEST ME」：試されることへの戸惑いと前進を描いた曲。
-  </p>
-</section>
-
